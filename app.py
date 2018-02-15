@@ -1,5 +1,5 @@
 #!flask/bin/python
-#import six
+import six
 from flask import Flask, jsonify, abort, request, make_response, url_for
 from app.models import Device, GPS, DeviceSchema, GPSSchema
 import os
@@ -66,9 +66,9 @@ def update_device(device_id):
 		abort(404)
 	if not request.json:
 		abort(400)
-	if 'name' in request.json: # and not isinstance(request.json['name'], six.string_types):
+	if 'name' in request.json and not isinstance(request.json['name'], six.string_types):
 		abort(400)
-	if 'simid' in request.json: # and not isinstance(request.json['simid'], six.string_types):
+	if 'simid' in request.json and not isinstance(request.json['simid'], six.string_types):
 		abort(400)
 	if 'registerutc' in reuqest.json and not isinstance(request.json['registerutc'], DateTime):
 		abort(400)
